@@ -58,6 +58,7 @@ double avg(List<StudentScore> students){
 void printMenu(){
   print("1. 우수생 출력");
   print("2. 전체 평균 점수 출력");
+  print("3. 종료");
   print("메뉴 번호를 입력하세요: ");
   print("");
 }
@@ -76,6 +77,9 @@ void main() {
     } else if(input == "2"){
       double avgCalculate = avg(students);
       print("전체 평수 점수: ${avgCalculate.toStringAsFixed(2)}");
+    } else if(input == "3"){
+      print("3. 종료")
+      exit(1);
     } else {
       print("잘못된 입력입니다. 다시 입력해주세요.");
     }
