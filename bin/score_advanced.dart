@@ -5,7 +5,7 @@ class Score {
 
   Score(this.score);
 
-  void showInfo() {
+  void show() {
     print("점수: $score");
   }
 }
@@ -16,7 +16,7 @@ class StudentScore extends Score {
   StudentScore(this.name, int score) : super(score);
 
   @override
-  void showInfo() {
+  void show() {
     print("이름: $name, 점수: $score");
   }
 }
