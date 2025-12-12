@@ -1,6 +1,6 @@
 import 'dart:io';
 
-class Score {
+class Score {//부모 클래스
   int score;
 
   Score(this.score);
@@ -10,7 +10,7 @@ class Score {
   }
 }
 
-class StudentScore extends Score {
+class StudentScore extends Score {//Score를 상속 받는 클래스
   String name;
 
   StudentScore(this.name, int score) : super(score);
@@ -22,7 +22,7 @@ class StudentScore extends Score {
 }
 
 
-List<StudentScore> loadStudentData(String filePath) {
+List<StudentScore> loadStudentData(String filePath) {//파일에서 학생 이름 점수 읽는 함수
   List<StudentScore> students = [];//이름: , 점수:
 
   try {
@@ -49,9 +49,9 @@ List<StudentScore> loadStudentData(String filePath) {
 }
 
 
-StudentScore getStudentFromUser(List<StudentScore> students) {
+StudentScore getStudentFromUser(List<StudentScore> students) {//사용자에게 이름을 입력받아 해당 학생 정보 찾기
   while (true) {
-    print("어떤 학생의 통계를 확인하시겠습니까? (예: 1: 홍길동, 2: 김철수)"); //인코딩 문제로 한글 입력이 아닌 정수 입력으로 대체 하였습니다.
+    print("어떤 학생의 통계를 확인하시겠습니까? (예: 1(홍길동), 2(김철수)"); //인코딩 문제로 한글 입력이 아닌 정수 입력으로 대체 하였습니다.
 
     String? input = stdin.readLineSync();
 
@@ -79,7 +79,7 @@ double avgScore(List<StudentScore> students){
     return total/students.length;
 }
 
-void saveResult(String filePath, String content) {
+void saveResult(String filePath, String content) {//result.txt에 학생 이름 점수 값 저장 함수
   try {
     final file = File(filePath);
     file.writeAsStringSync(content);
@@ -90,13 +90,13 @@ void saveResult(String filePath, String content) {
 }
 
 void main() {
-  List<StudentScore> students = loadStudentData("../students.txt");
+  List<StudentScore> students = loadStudentData("../students.txt");//상대경로 students.txt 파일 찾기
   StudentScore selectedStudent = getStudentFromUser(students);
 
-  selectedStudent.showInfo();
+  selectedStudent.show();
   // double avg = avgScore(students);
   // print("평균점수: $avg");
 
   String resultText = "이름: ${selectedStudent.name}, 점수: ${selectedStudent.score}";
-  saveResult("result.txt", resultText);
+  saveResult("result.txt", resultText);//저장함수 호출
 }
