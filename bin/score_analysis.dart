@@ -32,7 +32,7 @@ class StudentScore extends Score {
   }
 }
 
-List<StudentScore> loadStudentData(String filePath){
+List<StudentScore> loadStudentData(String filePath){//학생 점수 읽는 함수
   try{
     final lines = File(filePath).readAsLinesSync();
     return lines.map((line) => StudentScore.fromCsv(line)).toList();
@@ -42,13 +42,13 @@ List<StudentScore> loadStudentData(String filePath){
   }
 }
 
-StudentScore findBestStudent(List<StudentScore> students){
+StudentScore findBestStudent(List<StudentScore> students){ //우수생 찾는 함수
   return students.reduce(
     (best, current) => current.score > best.score ? current : best,
   );
 }
 
-double avg(List<StudentScore> students){
+double avg(List<StudentScore> students){ //평균 점수 계산 함수
   if(students.isEmpty) return 0;
 
   int total = students.fold(0, (sum, s) => sum + s.score);
@@ -64,7 +64,7 @@ void printMenu(){
 }
 
 void main() {
-  final students = loadStudentData("../students.txt");
+  final students = loadStudentData("../students.txt");//상대경로 students.txt
 
   while(true){
     printMenu();
@@ -78,7 +78,7 @@ void main() {
       double avgCalculate = avg(students);
       print("전체 평수 점수: ${avgCalculate.toStringAsFixed(2)}");
     } else if(input == "3"){
-      print("3. 종료")
+      print("3. 종료");
       exit(1);
     } else {
       print("잘못된 입력입니다. 다시 입력해주세요.");
